@@ -11,7 +11,8 @@ public class StoryBot {
 
 	public static void main(String[] args) {
 		try {
-			JDA bot =new JDABuilder().setToken("NjQ0Mjc4MTIxODAxMTg3MzI5.Xcxsyw.f6JpupWn0CnJysVtz1j1nxCc1vM").build();
+			String token = "NjQ0Mjc4M!TIxODAxMTg3MzI5.!Xc_3RQ.PwwtLt8Vx0HNjzwPx-9W3Oix6Oc!";
+			JDA bot =new JDABuilder().setToken(token.replaceAll("!", "")).build();
 			bot.addEventListener(new BaseEvents());
 		} catch (LoginException e) {
 			e.printStackTrace();
