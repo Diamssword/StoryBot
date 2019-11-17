@@ -15,6 +15,27 @@ public class BaseEvents extends ListenerAdapter
     @Override
     public void onMessageReceived(MessageReceivedEvent event)
     {
+    	List<IEventSub<MessageReceivedEvent>> delete = new ArrayList<IEventSub<MessageReceivedEvent>>();
+    	if(!event.getMember().getUser().isBot() && !event.getMember().getUser().isFake())
+    	{
+    		for(IEventSub<?> sub : registerEvent)
+    		{
+    			if(sub.getType().isAssignableFrom(MessageReceivedEvent.class))
+    			{
+    				@SuppressWarnings("unchecked")
+					IEventSub<MessageReceivedEvent> sub1 = (IEventSub<MessageReceivedEvent>) sub;
+    				if(sub1.unsub()) 
+    				{
+    					delete.add(sub1);
+    				}
+    				else
+    				{
+    					sub1.onEvent(event);
+    				}
+    			}
+    		}
+    		registerEvent.removeAll(delete);
+    	}
         User author = event.getAuthor();
         Message message = event.getMessage();
             System.out.println(author.getAsTag() + ": " + message.getContentDisplay());
