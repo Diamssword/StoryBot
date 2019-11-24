@@ -36,9 +36,6 @@ public class BaseEvents extends ListenerAdapter
     		}
     		registerEvent.removeAll(delete);
     	}
-        User author = event.getAuthor();
-        Message message = event.getMessage();
-            System.out.println(author.getAsTag() + ": " + message.getContentDisplay());
     }
     @Override
     public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent event)

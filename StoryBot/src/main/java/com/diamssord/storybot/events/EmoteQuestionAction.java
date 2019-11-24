@@ -1,6 +1,5 @@
 package com.diamssord.storybot.events;
 
-import net.dv8tion.jda.api.entities.Emote;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
 
@@ -24,7 +23,7 @@ public class EmoteQuestionAction extends ActionBase implements IEventSub<GuildMe
 		this.messageID = channel.sendMessage(msg).complete().getId();
 		for(ISubAction act :answers)
 		{
-		channel.addReactionById(this.messageID,String.valueOf(Character.toChars(act.emote()))).queue();;
+			channel.addReactionById(this.messageID,String.valueOf(Character.toChars(act.emote()))).queue();;
 		}
 	}
 	public EmoteQuestionAction(IActionExecutor exec)
@@ -34,7 +33,7 @@ public class EmoteQuestionAction extends ActionBase implements IEventSub<GuildMe
 	}
 	@Override
 	public void execute() {
-		
+
 	}
 	@Override
 	public boolean unsub() {
@@ -42,11 +41,23 @@ public class EmoteQuestionAction extends ActionBase implements IEventSub<GuildMe
 	}
 	@Override
 	public void onEvent(GuildMessageReactionAddEvent event) {
-		if(event.getMessageId().equals(messageID))
+		if(event.getMessageId().equals(messageID) && !this.finished())
 		{
-			
+			try {
+				int code =Integer.parseInt(event.getReactionEmote().getAsCodepoints().replaceFirst("U+", ""),16);
+				for(ISubAction sub : answers)
+				{
+
+					if(sub.emote()==code)
+					{
+						sub.execute(event);
+						this.finish();
+					}
+				}
+			}catch(NumberFormatException e) {};
+
 		}
-		
+
 	}
 	@Override
 	public Class<? extends GuildMessageReactionAddEvent> getType() {
@@ -54,7 +65,7 @@ public class EmoteQuestionAction extends ActionBase implements IEventSub<GuildMe
 	}
 	public static interface ISubAction
 	{
-		public void execute();
+		public void execute(GuildMessageReactionAddEvent event);
 		public String title();
 		public int emote();
 	}

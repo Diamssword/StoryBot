@@ -11,10 +11,12 @@ import java.util.Scanner;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Storage {
 
 	public static Map<String,Map<String,String>> globaldatas = new HashMap<String,Map<String,String>>();
+	public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	public static Map<String,String> getData(String serverID)
 	{
 		Map<String,String> mp =globaldatas.get(serverID);
@@ -25,6 +27,17 @@ public class Storage {
 		}
 		return mp;
 	}
+	public static void putAndSaveData(String serverID,String key,String data)
+	{
+		Map<String,String> mp =globaldatas.get(serverID);
+		if(mp == null)
+		{
+			mp = new HashMap<String,String>();
+			globaldatas.put(serverID, mp);
+		}
+		mp.put(key, data);
+		saveData(serverID);
+	}
 	public static void saveData(String serverID)
 	{
 		Map<String,String> mp =globaldatas.get(serverID);
@@ -34,7 +47,7 @@ public class Storage {
 			f.getParentFile().mkdirs();
 			try {
 				FileWriter w = new FileWriter(f);
-				String s =new Gson().toJson(mp);
+				String s =gson.toJson(mp);
 				w.write(s);
 				w.close();
 			} catch (IOException e) {
@@ -52,7 +65,6 @@ public class Storage {
 			if(f1.getName().toLowerCase().endsWith(".json"))
 			{
 				String id = f1.getName().substring(0,f1.getName().length()-5);
-				System.out.println(id);
 				if(!globaldatas.containsKey(id))
 				{
 					try {
@@ -65,7 +77,7 @@ public class Storage {
 						r.close();
 						@SuppressWarnings("serial")
 						Type type = new TypeToken<Map<String, String>>(){}.getType();
-						Map<String,String> res=new Gson().fromJson(s, type);
+						Map<String,String> res=gson.fromJson(s, type);
 						globaldatas.put(id, res);
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
