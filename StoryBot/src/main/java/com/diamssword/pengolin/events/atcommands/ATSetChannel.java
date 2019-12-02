@@ -1,6 +1,6 @@
-package com.diamssord.storybot.events.atcommands;
+package com.diamssword.pengolin.events.atcommands;
 
-import com.diamssord.storybot.events.torage.Storage;
+import com.diamssword.pengolin.events.torage.Storage;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 

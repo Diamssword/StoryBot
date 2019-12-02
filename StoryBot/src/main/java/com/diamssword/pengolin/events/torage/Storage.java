@@ -1,4 +1,4 @@
-package com.diamssord.storybot.events.torage;
+package com.diamssword.pengolin.events.torage;
 
 import java.io.File;
 import java.io.FileNotFoundException;

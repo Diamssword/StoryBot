@@ -1,4 +1,4 @@
-package com.diamssord.storybot.events;
+package com.diamssword.pengolin.events;
 
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;

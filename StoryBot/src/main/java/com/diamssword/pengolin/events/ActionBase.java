@@ -1,4 +1,4 @@
-package com.diamssord.storybot.events;
+package com.diamssword.pengolin.events;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,9 +1,9 @@
-package com.diamssord.storybot.party;
+package com.diamssword.pengolin.party;
 
 import java.util.List;
 
-import com.diamssord.storybot.events.IAction;
-import com.diamssord.storybot.events.IActionExecutor;
+import com.diamssword.pengolin.events.IAction;
+import com.diamssword.pengolin.events.IActionExecutor;
 
 public class Party implements IActionExecutor{
 String owner;

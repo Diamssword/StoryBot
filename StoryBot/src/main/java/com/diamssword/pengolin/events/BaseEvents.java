@@ -1,4 +1,4 @@
-package com.diamssord.storybot.events;
+package com.diamssword.pengolin.events;
 
 import java.util.ArrayList;
 import java.util.List;

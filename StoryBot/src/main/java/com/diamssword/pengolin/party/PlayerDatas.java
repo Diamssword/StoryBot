@@ -1,4 +1,4 @@
-package com.diamssord.storybot.party;
+package com.diamssword.pengolin.party;
 
 import java.util.List;
 

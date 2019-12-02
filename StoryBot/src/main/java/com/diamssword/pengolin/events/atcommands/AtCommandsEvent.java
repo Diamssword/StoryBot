@@ -1,11 +1,11 @@
-package com.diamssord.storybot.events.atcommands;
+package com.diamssword.pengolin.events.atcommands;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.diamssord.storybot.StoryBot;
-import com.diamssord.storybot.events.BaseEvents;
-import com.diamssord.storybot.events.IEventSub;
+import com.diamssword.pengolin.StoryBot;
+import com.diamssword.pengolin.events.BaseEvents;
+import com.diamssword.pengolin.events.IEventSub;
 
 import net.dv8tion.jda.api.entities.Message.MentionType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;

@@ -1,4 +1,4 @@
-package com.diamssord.storybot.events.atcommands;
+package com.diamssword.pengolin.events.atcommands;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
