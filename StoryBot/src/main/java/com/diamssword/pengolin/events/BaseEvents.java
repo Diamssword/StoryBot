@@ -3,8 +3,6 @@ package com.diamssword.pengolin.events;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -29,6 +27,19 @@ public class BaseEvents extends ListenerAdapter
     					delete.add(sub1);
     				}
     				else
+    				{
+    					sub1.onEvent(event);
+    				}
+    			}
+    			else if(sub.getType().isAssignableFrom(ChannelMessageEvent.class))
+    			{
+    				@SuppressWarnings("unchecked")
+					IEventSub<MessageReceivedEvent> sub1 = (IEventSub<MessageReceivedEvent>) sub;
+    				if(sub1.unsub()) 
+    				{
+    					delete.add(sub1);
+    				}
+    				else if(event.getChannel().getId().equals(sub1.getEventData()))
     				{
     					sub1.onEvent(event);
     				}

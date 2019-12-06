@@ -12,8 +12,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class AtCommandsEvent implements IEventSub<MessageReceivedEvent>{
 
-	public List<IATCommand> cmds = new ArrayList<IATCommand>();
-	private static AtCommandsEvent instance = new AtCommandsEvent();
+	private List<IATCommand> cmds = new ArrayList<IATCommand>();
+	public static AtCommandsEvent instance = new AtCommandsEvent();
 	public AtCommandsEvent()
 	{
 		BaseEvents.registerEvent.add(this);

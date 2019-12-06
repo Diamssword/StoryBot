@@ -1,4 +1,4 @@
-package com.diamssword.pengolin.events.torage;
+package com.diamssword.pengolin.events.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Storage {
-
+	public static final String KEY_CHAN = "mainChannel";
+	public static final String KEY_CHAN_REFRESH = "mainChannelRefresh";
 	public static Map<String,Map<String,String>> globaldatas = new HashMap<String,Map<String,String>>();
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	public static Map<String,String> getData(String serverID)

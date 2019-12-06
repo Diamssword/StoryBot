@@ -15,7 +15,9 @@ import com.diamssword.pengolin.events.atcommands.ATHelp;
 import com.diamssword.pengolin.events.atcommands.ATSetChannel;
 import com.diamssword.pengolin.events.atcommands.AtCommandsEvent;
 import com.diamssword.pengolin.events.atcommands.IATCommand;
-import com.diamssword.pengolin.events.torage.Storage;
+import com.diamssword.pengolin.events.chcommands.ChCommandsEvent;
+import com.diamssword.pengolin.events.chcommands.IChCommand;
+import com.diamssword.pengolin.events.storage.Storage;
 import com.diamssword.pengolin.limite.Limite;
 
 import net.dv8tion.jda.api.JDA;
@@ -70,16 +72,29 @@ public class StoryBot {
 
 						}});
 					Random r = new Random(); 
-					for(int i =0;i<2;i++)
+			/*		for(int i =0;i<2;i++)
 					{
 						String str = hey.get(r.nextInt(hey.size()));
 						chan.sendMessage(str).queue();
 						chan.sendMessage(hey1.get(r.nextInt(hey1.size()))).queue();
 						System.out.println(str);
-					}
+					}*/
 					AtCommandsEvent.addCommand(new ATHelp());
 					AtCommandsEvent.addCommand(new ATSetChannel());
 					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					ChCommandsEvent.addCommand(new IChCommand() {
+
+						@Override
+						public void trigger(MessageReceivedEvent event, String... args) {
+							event.getChannel().sendMessage("hey");
+							
+						}
+
+						@Override
+						public String[] key() {
+							return new String[] {"limite"};
+						}});
+					ChCommandsEvent.getInstance(bot.getGuilds().get(0));
 					System.out.print("Enter String");
 					String s = br.readLine();
 					System.out.print("Enter Integer:");
